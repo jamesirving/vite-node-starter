@@ -9,15 +9,15 @@ dotenv.config({path: '.env'})
 log.info(chalk.blue('Hello world'))
 
 // y, x
-function generateGrid(): String[][] {
-  let grid : String[][]  = Array(height).fill(' ').map(() => 
+function generateGrid(): string[][] {
+  const grid : string[][]  = Array(height).fill(' ').map(() => 
     Array(width).fill(' ').map(() => randomAsciiChar()
   ))
   grid.toString = () => gridToString(grid)
   return grid
 }
 
-function gridToString(grid: String[][]): string {
+function gridToString(grid: string[][]): string {
   return grid.map(row => row.join('')).join('\n')
 }
 
@@ -25,12 +25,12 @@ const characters = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567
 const width = 120
 const height = 80
 
-function randomAsciiChar(): String {
-  let i = (Math.random() * characters.length) | 0
+function randomAsciiChar(): string {
+  const i = (Math.random() * characters.length) | 0
   return characters[i]
 }
 
-let grid = generateGrid()
+const grid = generateGrid()
 
 //
 //

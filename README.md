@@ -16,7 +16,6 @@ prototyping or for building tools that are not meant to be distributed.
 # Install
 
 - `yarn install`
-- `yarn start --say "Hello, World"`
 
 ## Scripts
 
