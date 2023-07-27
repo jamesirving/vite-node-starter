@@ -8,29 +8,28 @@ import * as log from './console-logger'
 dotenv.config({path: '.env'})
 log.info(chalk.blue('Hello world'))
 
+const WIDTH = 120
+const HEIGHT = 80
+const CHARS = {
+  stone_floor: '.',
+  stone_wall:  '#',
+  water:       '~',
+  person:      '@',
+  bat:         'b',
+  snake:       's',
+  rat:         'r',
+  chest:       'n',
+  item:        'i',
+}
+
 // y, x
 function generateGrid(): string[][] {
-  const grid : string[][]  = Array(height).fill(' ').map(() => 
-    Array(width).fill(' ').map(() => randomAsciiChar()
-  ))
-  grid.toString = () => gridToString(grid)
+  const grid : string[][]  = Array(HEIGHT).fill(' ').map(() => Array(WIDTH).fill(CHARS.stone_floor))
+  grid.toString = () => grid.map(row => row.join('')).join('\n')
   return grid
 }
 
-function gridToString(grid: string[][]): string {
-  return grid.map(row => row.join('')).join('\n')
-}
-
-const characters = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,.?!@#$%^&*(:;'"\\|)}]{[<>/-_=+\`~`.split('');
-const width = 120
-const height = 80
-
-function randomAsciiChar(): string {
-  const i = (Math.random() * characters.length) | 0
-  return characters[i]
-}
-
-const grid = generateGrid()
+const mapGrid = generateGrid()
 
 //
 //
@@ -50,9 +49,9 @@ screen.key(["q", "C-c"], () => {
 const box = blessed.box({
   top: 'center',
   left: 'center',
-  width: 120+2,
-  height: 80+2,
-  content: grid.toString(),
+  width: WIDTH+2,
+  height: HEIGHT+2,
+  content: mapGrid.toString(),
   tags: true,
   mouse: false,
   border: {
@@ -69,7 +68,6 @@ const box = blessed.box({
     }
   }
 })
-
 
 screen.append(box)
 screen.render()

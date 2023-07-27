@@ -29,6 +29,7 @@
     "prettier": "prettier --write src test",
     "test": "vitest --no-watch",
     "test:watch": "vitest -w",
+    "dev": "vite-node src/app.ts --",
     "start": "vite-node src/app.ts --",
     "start:watch": "vite-node -w src/app.ts --",
     "clean": "rm -rf ./node_modules ./bin ./yarn.lock && yarn install"
